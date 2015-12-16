@@ -98,7 +98,6 @@ class PresentationCompiler(dependencies: List[String]) {
     if(matches.isEmpty) {
       matches = completion (pos, compiler.askScopeCompletion)
     }
-    // if there is only one could show description for sure, if there's more than 1 show first description?
     val returnMatches: Seq[Match] = matches
       .filter(m => m.symbol.startsWith(filterSnippet))
       .map {
