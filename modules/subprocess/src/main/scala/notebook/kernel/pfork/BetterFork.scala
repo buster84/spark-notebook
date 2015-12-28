@@ -223,7 +223,9 @@ object BetterFork {
     propLog.load(getClass().getResourceAsStream("/log4j.subprocess.properties"))
     val cleanPath = path.replaceAll("/", "\\\\").replaceAll("\"", "").replaceAll("'", "")
 
-    propLog.setProperty("log4j.appender.rolling.File", s"logs/sn-session-$kernelId-$cleanPath.log")
+    val timestamp: Long = System.currentTimeMillis / 1000
+
+    propLog.setProperty("log4j.appender.rolling.File", s"logs/sn-session-${cleanPath}-${timestamp}-${kernelId}.log")
     propLog.setProperty("log4j.rootLogger", s"$logLevel, rolling")
 
     PropertyConfigurator.configure(propLog)
